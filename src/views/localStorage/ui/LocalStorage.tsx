@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { FormEventHandler, useEffect, useState } from "react";
 import { ZodError } from "zod";
 
 import { Storage } from "@/shared/helpers/Storage";
@@ -15,6 +15,24 @@ import styles from "./index.module.scss";
 export const LocalStorage = () => {
 	const [person, setPerson] = useState<TPerson | null>(null);
 	const [zodError, setZodError] = useState<ZodError | null>(null);
+	const [name, setName] = useState<string>("");
+	const [surname, setSurname] = useState<string>("");
+	const [age, setAge] = useState<number>(0);
+
+	const onSavePerson: FormEventHandler<HTMLFormElement> = (event) => {
+		event.preventDefault();
+		const formData: TPerson = { name, surname, age };
+		const { success, error } = PersonSchema.safeParse(formData);
+
+		if (error) {
+			setZodError(error);
+		}
+
+		if (success) {
+			Storage.setItem("person", formData);
+			setZodError(null);
+		}
+	};
 
 	useEffect(() => {
 		const person = Storage.getItem<TPerson>("person");
@@ -32,31 +50,34 @@ export const LocalStorage = () => {
 	return (
 		<div className="container">
 			<div className={styles.localStorage__wrapper}>
-				<form className={styles.localStorage__form}>
+				<form className={styles.localStorage__form} onSubmit={onSavePerson}>
 					<div className={styles.localStorage__inputs}>
 						<InputForm
 							labelProps={{ children: "Имя" }}
-							inputProps={{ required: true }}
+							inputProps={{
+								name: "name",
+								required: true,
+								onChange: (e) => setName(e.target.value),
+							}}
 						/>
 
 						<InputForm
 							labelProps={{ children: "Фамилия" }}
-							inputProps={{ required: true }}
+							inputProps={{
+								name: "surname",
+								required: true,
+								onChange: (e) => setSurname(e.target.value),
+							}}
 						/>
 
 						<InputForm
 							labelProps={{ children: "Возраст" }}
-							inputProps={{ type: "number", required: true }}
-						/>
-
-						<InputForm
-							labelProps={{ children: "Профессия" }}
-							inputProps={{ required: true }}
-						/>
-
-						<InputForm
-							labelProps={{ children: "Стаж" }}
-							inputProps={{ type: "number", required: true }}
+							inputProps={{
+								type: "number",
+								name: "age",
+								required: true,
+								onChange: (e) => setAge(+e.target.value),
+							}}
 						/>
 					</div>
 
@@ -77,21 +98,13 @@ export const LocalStorage = () => {
 							<p className={styles.localStorage__title}>Возраст:</p>
 							<p className={styles.localStorage__value}>{person?.age}</p>
 						</li>
-						<li className={styles.localStorage__item}>
-							<p className={styles.localStorage__title}>Профессия:</p>
-							<p className={styles.localStorage__value}>{person?.profession}</p>
-						</li>
-						<li className={styles.localStorage__item}>
-							<p className={styles.localStorage__title}>Стаж:</p>
-							<p className={styles.localStorage__value}>{person?.experience}</p>
-						</li>
 					</ul>
 				)}
 
 				{zodError && (
 					<div className={styles.localStorage__error}>
 						<p className={styles.localStorage__errorText}>
-							{zodError.toString()}
+							{JSON.stringify(zodError, null, "")}
 						</p>
 					</div>
 				)}
