@@ -9,12 +9,12 @@ export const Header = () => {
 				<nav className={styles.header__nav}>
 					<ul className={styles.header__list}>
 						<li className={styles.header__item}>
-							<Link className={styles.header__link} href="#">
+							<Link className={styles.header__link} href="/">
 								Local storage
 							</Link>
 						</li>
 						<li className={styles.header__item}>
-							<Link className={styles.header__link} href="#">
+							<Link className={styles.header__link} href="/query">
 								Query parameters
 							</Link>
 						</li>
