@@ -1,5 +1,3 @@
-import { z } from "zod";
-
 import { Query } from "@/views/query";
 
 import { QuerySchema, TQuery } from "@/views/query/types";

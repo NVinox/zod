@@ -19,7 +19,7 @@ export const Header = () => {
 							</Link>
 						</li>
 						<li className={styles.header__item}>
-							<Link className={styles.header__link} href="#">
+							<Link className={styles.header__link} href="/api">
 								API
 							</Link>
 						</li>
