@@ -15,4 +15,12 @@
 		row-gap: 10px;
 		margin-bottom: 20px;
 	}
+
+	&__error {
+		padding: 10px 0;
+	}
+
+	&__errorText {
+		color: #a11515;
+	}
 }
