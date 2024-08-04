@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
-import { Header } from "@/components/Header";
+import { Header } from "@/widgets/header";
 
 import "@/styles/index.scss";
 
