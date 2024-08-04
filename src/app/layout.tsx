@@ -3,7 +3,7 @@ import { Suspense } from "react";
 
 import { Header } from "@/widgets/header";
 
-import "@/styles/index.scss";
+import "@/shared/styles/index.scss";
 
 export const metadata: Metadata = {
 	title: "Local Storage",
