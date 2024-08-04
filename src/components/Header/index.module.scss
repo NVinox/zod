@@ -1,0 +1,25 @@
+.header {
+	&__wrapper {
+		padding: 25px 0;
+		background-color: #222222;
+	}
+
+	&__list {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__item + &__item {
+		margin-left: 20px;
+	}
+
+	&__link {
+		color: #bdbdbd;
+		transition: color 0.2s ease-in-out;
+	}
+
+	&__link:hover {
+		color: #ffffff;
+	}
+}
