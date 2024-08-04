@@ -5,6 +5,9 @@ import { ZodError } from "zod";
 
 import { Storage } from "@/shared/helpers/Storage";
 
+import { Button } from "@/shared/ui/button";
+import { InputForm } from "@/shared/ui/inputForm";
+
 import { PersonSchema, TPerson } from "../types";
 
 import styles from "./index.module.scss";
@@ -30,32 +33,34 @@ export const LocalStorage = () => {
 		<div className="container">
 			<div className={styles.localStorage__wrapper}>
 				<form className={styles.localStorage__form}>
-					<div>
-						<label htmlFor="name">Имя</label>
-						<input id="name" type="text" required />
+					<div className={styles.localStorage__inputs}>
+						<InputForm
+							labelProps={{ children: "Имя" }}
+							inputProps={{ required: true }}
+						/>
+
+						<InputForm
+							labelProps={{ children: "Фамилия" }}
+							inputProps={{ required: true }}
+						/>
+
+						<InputForm
+							labelProps={{ children: "Возраст" }}
+							inputProps={{ type: "number", required: true }}
+						/>
+
+						<InputForm
+							labelProps={{ children: "Профессия" }}
+							inputProps={{ required: true }}
+						/>
+
+						<InputForm
+							labelProps={{ children: "Стаж" }}
+							inputProps={{ type: "number", required: true }}
+						/>
 					</div>
 
-					<div>
-						<label htmlFor="surname">Фамилия</label>
-						<input id="surname" type="text" required />
-					</div>
-
-					<div>
-						<label htmlFor="age">Возраст</label>
-						<input id="age" type="number" required />
-					</div>
-
-					<div>
-						<label htmlFor="profession">Профессия</label>
-						<input id="profession" type="text" required />
-					</div>
-
-					<div>
-						<label htmlFor="experience">Стаж</label>
-						<input id="experience" type="number" required />
-					</div>
-
-					<button type="submit">Сохранить</button>
+					<Button>Сохранить</Button>
 				</form>
 
 				{person && (
@@ -86,7 +91,7 @@ export const LocalStorage = () => {
 				{zodError && (
 					<div className={styles.localStorage__error}>
 						<p className={styles.localStorage__errorText}>
-							{JSON.stringify(zodError)}
+							{zodError.toString()}
 						</p>
 					</div>
 				)}

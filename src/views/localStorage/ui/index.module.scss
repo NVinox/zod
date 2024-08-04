@@ -3,6 +3,19 @@
 		padding: 30px 0;
 	}
 
+	&__form {
+		max-width: 350px;
+		margin-bottom: 30px;
+	}
+
+	&__inputs {
+		display: flex;
+		flex-direction: column;
+
+		row-gap: 10px;
+		margin-bottom: 20px;
+	}
+
 	&__list {
 		margin-bottom: 15px;
 	}
