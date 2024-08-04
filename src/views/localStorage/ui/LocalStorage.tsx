@@ -104,7 +104,7 @@ export const LocalStorage = () => {
 				{zodError && (
 					<div className={styles.localStorage__error}>
 						<p className={styles.localStorage__errorText}>
-							{JSON.stringify(zodError, null, "")}
+							{JSON.stringify(zodError, null, " ")}
 						</p>
 					</div>
 				)}
