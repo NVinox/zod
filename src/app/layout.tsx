@@ -6,22 +6,22 @@ import { Header } from "@/widgets/header";
 import "@/shared/styles/index.scss";
 
 export const metadata: Metadata = {
-	title: "Local Storage",
+  title: "Local Storage",
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html lang="ru">
-			<body>
-				<Suspense>
-					<Header />
-					<main className="main">{children}</main>
-				</Suspense>
-			</body>
-		</html>
-	);
+  return (
+    <html lang="ru">
+      <body>
+        <Suspense>
+          <Header />
+          <main className="main">{children}</main>
+        </Suspense>
+      </body>
+    </html>
+  );
 }
